@@ -37,55 +37,60 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 namespace Gorder
 {
 
-using namespace std;
+    using namespace std;
 
-class Vertex{
-public:
-	int outstart;
-	int outdegree;
-	int instart;
-	int indegree;
+    class Vertex
+    {
+    public:
+        int outstart;
+        int outdegree;
+        int instart;
+        int indegree;
 
-	Vertex(){
-		outdegree=indegree=0;
-		outstart=instart=-1;
-	}
-};
+        Vertex()
+        {
+            outdegree = indegree = 0;
+            outstart = instart = -1;
+        }
+    };
 
-class Graph{
-	public:
-		int vsize;
-		long long edgenum;
-		string name;
-		
-		vector<Vertex> graph;
-		vector<int> outedge;
-		vector<int> inedge;
-	
-		string getFilename();
-		void setFilename(string name);
+    class Graph
+    {
+    public:
+        int vsize;
+        long long edgenum;
+        string name;
 
-		Graph();
-		~Graph();
-		void clear();
-		void readGraph(const string& fullname);
-		void writeGraph(ostream&);
-		void PrintReOrderedGraph(const vector<int>& order);
-		void GraphAnalysis();
-		void RemoveDuplicate(const string& fullname);
-		
-		void strTrimRight(string& str);
-		static vector<string> split(const string &s, char delim);
-		static vector<string>& split(const string &s, char delim, vector<string> &elems);
+        vector<Vertex> graph;
+        vector<int> outedge;
+        vector<int> inedge;
+        vector<int> order_l1;
 
-		void GapCount();
-		double GapCost(vector<int>& order);
-		void Transform();
-		void GorderGreedy(vector<int>& order, int window);
+        string getFilename();
+        void setFilename(string name);
 
-		void RCMOrder(vector<int>& order);
-		unsigned long long LocalityScore(const int w);
-};
+        Graph();
+        ~Graph();
+        void clear();
+        void readGraph(const string &fullname);
+        void writeGraph(ostream &);
+        void PrintReOrderedGraph(const vector<int> &order);
+        void PrintReOrderedList(vector<int> &order);
+        void GraphAnalysis();
+        void RemoveDuplicate(const string &fullname);
+
+        void strTrimRight(string &str);
+        static vector<string> split(const string &s, char delim);
+        static vector<string> &split(const string &s, char delim, vector<string> &elems);
+
+        void GapCount();
+        double GapCost(vector<int> &order);
+        void Transform();
+        void GorderGreedy(vector<int> &order, int window);
+
+        void RCMOrder(vector<int> &order);
+        unsigned long long LocalityScore(const int w);
+    };
 
 }
 
